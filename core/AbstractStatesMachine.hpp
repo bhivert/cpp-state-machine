@@ -16,7 +16,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>
 *
 * Created on 2019/04/27 at 09:32:29 by  <hivert.benoit@gmail.com>
-* Updated on 2019/04/28 at 03:09:31 by  <hivert.benoit@gmail.com>
+* Updated on 2019/05/01 at 16:16:52 by  <hivert.benoit@gmail.com>
 */
 
 /*!
@@ -43,17 +43,15 @@ class AbstractStatesMachine {
 		};
 
 		enum class	error_type : unsigned char {
-			NO_ERR,
+			NO_ERR = 0,
 			UNKNOW,
 			UNKNOW_STATE
 		};
 
 		virtual					~AbstractStatesMachine(void) {
-			for (typename std::vector< StateInterface < E > * >::iterator it = m_states_pool.begin(); it != m_states_pool.end(); ) {
-				auto tmp = it++;
-				delete *tmp;
+			for (typename std::vector< StateInterface < E > * >::iterator it = m_states_pool.begin(); it != m_states_pool.end(); ++it) {
+				delete *it;
 			}
-			m_states_pool.clear();
 		};
 
 		status_type				getStatus(void) const {
@@ -100,7 +98,7 @@ class AbstractStatesMachine {
 
 	protected:
 		AbstractStatesMachine(const std::vector< StateInterface < E > * > &states_pool) \
-			: m_status(status_type::STOPED), m_active_state((E)0), m_next_state((E)0), m_states_pool(states_pool) {
+			: m_status(status_type::STOPED), m_active_state(static_cast< E >(0)), m_next_state(static_cast< E >(0)), m_states_pool(states_pool) {
 		};
 
 		error_type				executeNextState(void) try {

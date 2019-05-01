@@ -16,7 +16,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>
 *
 * Created on 2019/04/27 at 11:04:23 by  <hivert.benoit@gmail.com>
-* Updated on 2019/04/28 at 02:58:49 by  <hivert.benoit@gmail.com>
+* Updated on 2019/05/01 at 16:14:39 by  <hivert.benoit@gmail.com>
 */
 
 /*!
@@ -24,12 +24,24 @@
   @brief ...
   */
 
-# include "test_states_machine.hpp"
+# include "test_conf.hpp"
 # include <iostream>
 
+# include "./state_0.hpp"
+# include "./state_1.hpp"
+# include "./state_2.hpp"
+
+static const std::vector< StateInterface < test_conf > * >	g_test_states({
+	new State_0(),
+	new State_1(),
+	new State_2()
+});
+
+static StatesMachine < test_conf >	test_states_machine(g_test_states);
+
 int		main() {
-	test_states_machine.reset();;
-	test_states_machine.start();;
+	test_states_machine.reset();
+	test_states_machine.start();
 	while (!test_states_machine.isStoped()) {
 		test_states_machine.executeNextState();
 		std::cout << test_states_machine << std::endl;
