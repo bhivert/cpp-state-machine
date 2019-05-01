@@ -16,7 +16,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>
 *
 * Created on 2019/04/27 at 14:53:17 by  <hivert.benoit@gmail.com>
-* Updated on 2019/04/28 at 03:00:41 by  <hivert.benoit@gmail.com>
+* Updated on 2019/05/01 at 15:56:06 by  <hivert.benoit@gmail.com>
 */
 
 /*!
@@ -27,7 +27,7 @@
 #ifndef STATE_2_HPP
 # define STATE_2_HPP
 
-# include "test_states_machine.hpp"
+# include "test_conf.hpp"
 # include <iostream>
 
 class State_2 : public StateInterface< test_conf > {

@@ -16,7 +16,7 @@
 * along with this program. If not, see <http://www.gnu.org/licenses/>
 *
 * Created on 2019/04/27 at 14:53:17 by  <hivert.benoit@gmail.com>
-* Updated on 2019/04/28 at 03:00:34 by  <hivert.benoit@gmail.com>
+* Updated on 2019/05/01 at 16:00:54 by  <hivert.benoit@gmail.com>
 */
 
 /*!
@@ -27,12 +27,12 @@
 #ifndef STATE_1_HPP
 # define STATE_1_HPP
 
-# include "test_states_machine.hpp"
+# include "test_conf.hpp"
 # include <iostream>
 
 class State_1 : public StateInterface< test_conf > {
 	private:
-		static size_t	_i;
+		size_t	_i = 0;
 
 	public:
 		virtual void	operator()(AbstractStatesMachine< test_conf >& st) {
@@ -43,7 +43,5 @@ class State_1 : public StateInterface< test_conf > {
 				st.setNextState(test_conf::_2);
 		};
 };
-
-size_t	State_1::_i = 0;
 
 #endif
